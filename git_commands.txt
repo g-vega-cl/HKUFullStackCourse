@@ -1,0 +1,3 @@
+git remote add origin <repository URL> (add the remote online repository)
+
+git push -u origin master (push the local git repository to master branch)
