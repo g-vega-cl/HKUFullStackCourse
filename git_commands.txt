@@ -1,3 +1,8 @@
 git remote add origin <repository URL> (add the remote online repository)
 
 git push -u origin master (push the local git repository to master branch)
+
+git cheatsheets:
+http://ndpsoftware.com/git-cheatsheet.html#loc=remote_repo;
+
+https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf
