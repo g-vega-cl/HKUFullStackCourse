@@ -1,0 +1,2 @@
+npm install <packge> --save-dev
+(--save-dev means that the package is only used if you are developing, not producing)
