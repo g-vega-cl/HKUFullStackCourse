@@ -29,3 +29,13 @@
     margin: 0px;
     color: #0f0f0f;
 }
+
+body{
+    padding: 50px;
+    z-index: 0;
+}
+
+.navbar-dark{
+    background-color: #512DA8;
+    /* To find suggestions on colors and design go to: Developer.android.com -> Material design */
+}
