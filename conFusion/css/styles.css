@@ -39,3 +39,8 @@ body{
     background-color: #512DA8;
     /* To find suggestions on colors and design go to: Developer.android.com -> Material design */
 }
+
+.unstyled-a{
+    color: #000000;
+    text-decoration: none;
+}
