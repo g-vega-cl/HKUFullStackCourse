@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
 import { Navbar, NavbarBrand } from "reactstrap";
 import {Menu} from "./components/MenuComponent";
+import {dishes} from "./shared/dishes";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         </div>
       </Navbar>
 
-      <Menu/>
+      <Menu dishes = {dishes}/>
     </div>
   );
 }
