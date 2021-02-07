@@ -1,18 +1,11 @@
 import React from "react";
-import { Navbar, NavbarBrand } from "reactstrap";
-import {Menu} from "./components/MenuComponent";
-import {dishes} from "./shared/dishes";
+import {Main} from "./components/MainComponent";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-        </div>
-      </Navbar>
-
-      <Menu dishes = {dishes}/>
+      <Main></Main>
     </div>
   );
 }
