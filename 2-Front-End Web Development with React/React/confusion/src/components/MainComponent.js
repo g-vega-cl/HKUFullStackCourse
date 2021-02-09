@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Home } from "./HomeComponent";
 import { Menu } from "./MenuComponent";
 import Contact from "./ContactComponent";
+import  About from "./AboutComponent";
 import { DishDetail } from "../components/DishdetailComponent";
 import { Header } from "./HeaderComponent";
 import { Footer } from "./FooterComponent";
@@ -40,7 +41,7 @@ export const Main = () => {
             (comment) => comment.dishId === parseInt(match.params.dishId, 10)
           )[0]
         }
-        
+
       />
     );
   };
@@ -53,6 +54,7 @@ export const Main = () => {
         <Route exact path="/menu" component={() => <Menu dishes={DISHES} />} />
         <Route path="/menu/:dishid" component={DishWithId} />
         <Route exact path="/contactus" component={Contact} />
+        <Route exact path="/aboutus" component={() => <About leaders = {leaders}/>} />
         <Redirect to="/home"></Redirect>
       </Switch>
 
