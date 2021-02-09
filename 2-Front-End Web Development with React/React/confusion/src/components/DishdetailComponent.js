@@ -1,65 +1,81 @@
-import React from 'react';
+import React from "react";
 import {
-    Card,
-    CardImg,
-    CardText,
-    CardBody,
-    CardTitle,
-  } from "reactstrap";
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+} from "reactstrap";
 
-const RenderDish = ({dish}) =>{
-    return(
-    <div className="col-12 col-md-5 m-1" >
-    <Card>
+import { Link } from "react-router-dom";
+
+const RenderDish = ({ dish }) => {
+  return (
+    <div className="col-12 col-md-5 m-1">
+      <Card>
         <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
         <CardBody>
-        <CardTitle>{dish.name}</CardTitle>
-        <CardText>{dish.description}</CardText>
+          <CardTitle>{dish.name}</CardTitle>
+          <CardText>{dish.description}</CardText>
         </CardBody>
-    </Card>
+      </Card>
     </div>
+  );
+};
+
+const RenderComments = ({ commentsArray }) => {
+  const comments = commentsArray.map((comment) => {
+    return (
+      <div key={comment.id} className="col-12">
+        <h4>Comment</h4>
+        <ul className="list-unstyled">
+          <li>
+            <p>{comment.comment}</p>
+          </li>
+          <li></li>
+          <li>
+            <p>
+              --{comment.author} ,{" "}
+              {new Intl.DateTimeFormat("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+              }).format(new Date(Date.parse(comment.date)))}
+            </p>
+          </li>
+        </ul>
+      </div>
     );
-}
+  });
+  return <div>{comments}</div>;
+};
+export const DishDetail = (props) => {
+  if (props.dish != null) {
+    return (
+      <div className="container">
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/home">Home</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <Link to="/menu">Menu</Link>
+          </BreadcrumbItem>
 
-const RenderComments = ({commentsArray}) => {
-    const comments = commentsArray.map((comment) => {
-
-        return (
-            
-            <div key={comment.id} className="col-12">
-                <h4>Comment</h4>
-                <ul className="list-unstyled">
-                    <li><p>{comment.comment}</p></li>
-                    <li></li>
-                    <li><p>--{comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p></li>
-                </ul>
-            </div>
-            
-            
-        );
-    })
-    return(
-        <div>
-            {comments}
+          <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="col-12">
+          <h3>{props.dish.name}</h3>
+          <hr />
         </div>
-        
-    );
-}
-export const DishDetail = ({dish}) => {
-    if (dish != null) {
-      return (
-        <div className="container">
         <div className="row">
-            <RenderDish
-            dish={dish}
-            />
-            <RenderComments
-            commentsArray = {dish.comments}
-            />
+          <RenderDish dish={props.dish} />
+          <RenderComments commentsArray={props.comments} />
         </div>
-        </div>
-      );
-    } else {
-      return <div></div>;
-    }
+      </div>
+    );
+  } else {
+    return <div></div>;
+  }
 };
