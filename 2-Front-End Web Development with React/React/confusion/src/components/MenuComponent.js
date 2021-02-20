@@ -1,11 +1,8 @@
 import {
-  Button,
   Breadcrumb,
   BreadcrumbItem,
   Card,
   CardImg,
-  CardText,
-  CardBody,
   CardTitle,
   CardImgOverlay,
 } from "reactstrap";
