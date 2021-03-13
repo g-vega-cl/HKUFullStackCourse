@@ -2,10 +2,10 @@
   "name": "node-express",
   "version": "1.0.0",
   "description": "Node express examples",
-  "main": "index.tsx",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.tsx"
+    "start": "node index"
   },
   "author": "",
   "license": "ISC",
