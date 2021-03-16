@@ -1,36 +1,47 @@
-const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require("mongodb").MongoClient;
+const assert = require("assert");
+const dboper = require("./operations");
 
-const assert = require('assert');
+const url = "mongodb://localhost:27017/";
+const dbname = "conFusion";
 
-const url = 'mongodb://localhost:27017/';
-const dbname = 'conFusion';
+MongoClient.connect(url, (err, client) => {
+  assert.strictEqual(err, null);
 
-MongoClient.connect(url, (err,client) => {
-    assert.strictEqual(err, null);
+  console.log("Connected to server");
 
-    console.log('Connected to server');
+  const db = client.db(dbname);
 
-    const db = client.db(dbname);
-    const collection = db.collection('dishes');
+  dboper.insertDocument(
+    db,
+    { name: "Vadonut", description: "Test" },
+    "dishes",
+    (result) => {
+      console.log("Insert Document:\n", result.ops);
 
-    collection.insertOne({"name": "Uthappizza", "description": "test"},
-    (err, result) => {
-        assert.strictEqual(err,null);
+      dboper.findDocuments(db, "dishes", (docs) => {
+        console.log("Found Documents:\n", docs);
 
-        console.log("After Insert:\n");
-        console.log(result.ops);
+        dboper.updateDocument(
+          db,
+          { name: "Vadonut" },
+          { description: "Updated Test" },
+          "dishes",
+          (result) => {
+            console.log("Updated Document:\n", result.result);
 
-        collection.find({}).toArray((err, docs) => {
-            assert.strictEqual(err,null);
-            
-            console.log("Found:\n");
-            console.log(docs);
+            dboper.findDocuments(db, "dishes", (docs) => {
+              console.log("Found Updated Documents:\n", docs);
 
-            db.dropCollection("dishes", (err, result) => {
-                assert.strictEqual(err,null);
+              db.dropCollection("dishes", (result) => {
+                console.log("Dropped Collection: ", result);
 
                 client.close();
+              });
             });
-        });
-    });
+          }
+        );
+      });
+    }
+  );
 });
