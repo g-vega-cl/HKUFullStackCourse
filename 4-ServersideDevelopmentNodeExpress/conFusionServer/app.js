@@ -1,3 +1,5 @@
+//Go to your mongodb folder and use  mongod --dbpath=data --bind_ip 127.0.0.1  <- to start mongodb
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,6 +12,19 @@ var usersRouter = require('./routes/users');
 var dishRouter = require('./routes/dishRouter');
 var promoRouter = require('./routes/promotionRouter');
 var leaderRouter = require('./routes/leaderRouter');
+
+const mongoose = require('mongoose');
+
+const Dishes = require('./models/dishes');
+
+const url = 'mongodb://localhost:27017/conFusion';
+const connect = mongoose.connect(url);
+
+connect.then((db) => {
+  console.log("connected")
+}, (err) => {
+  console.log(err);
+});
 
 var app = express();
 
